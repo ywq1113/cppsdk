@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo apt-get -y bazel-bootstrap \
+sudo apt-get -y install bazel-bootstrap \
     build-essential
