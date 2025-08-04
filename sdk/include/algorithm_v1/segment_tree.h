@@ -1,4 +1,5 @@
 #include <cstdint>
+
 #include <vector>
 
 namespace algorithem_v1 {
@@ -28,10 +29,7 @@ class SegmentTree {
    * @param int node
    * @param int start, end
    */
-  void build(const std::vector<int> &data,
-             int node,
-             int start,
-             int end);
+  void build(const std::vector<int> &data, int node, int start, int end);
 
   /*
    * @brief Get sum of [l, r]

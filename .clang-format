@@ -1,27 +1,29 @@
-# 基于 Google 风格，做了一些适合现代 C++ 的优化
-BasedOnStyle: Google
+# ============================
+# Google C++ Style Base
+# Modern C++ 17/20 Optimized
+# ============================
 
-# ---- 通用选项 ----
+BasedOnStyle: Google
 Language: Cpp
-Standard: c++20                # 目标语言标准
+Standard: c++20
 
 # ---- 缩进与空格 ----
 IndentWidth: 2
 TabWidth: 4
-UseTab: Never                 # 只用空格
+UseTab: Never
 ContinuationIndentWidth: 4
-IndentCaseLabels: true        # switch-case 中 case 缩进
+IndentCaseLabels: false            # Google: case 与 switch 对齐
 
 # ---- 换行规则 ----
-ColumnLimit: 72              # 每行字符数限制，超过会自动换行
-AllowShortFunctionsOnASingleLine: Inline
+ColumnLimit: 80                   # Google 推荐 80
+AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
-BinPackArguments: false
-BinPackParameters: false
+BinPackArguments: true            # Google：参数尽可能放一行
+BinPackParameters: true
 
 # ---- 括号规则 ----
-BreakBeforeBraces: Attach     # 函数声明、类定义等 `{` 不换行 (Google 默认)
+BreakBeforeBraces: Attach
 BraceWrapping:
   AfterFunction: false
   AfterClass: false
@@ -29,7 +31,7 @@ BraceWrapping:
   BeforeElse: false
 
 # ---- 注释 ----
-ReflowComments: true          # 自动换行注释
+ReflowComments: true
 SpacesBeforeTrailingComments: 1
 
 # ---- 空行规则 ----
@@ -38,30 +40,34 @@ MaxEmptyLinesToKeep: 1
 
 # ---- include 规则 ----
 SortIncludes: true
-IncludeBlocks: Regroup        # 分组整理 include
+IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex: '^<.*\.h>'
+  - Regex: '^"(.*)"'
     Priority: 1
-  - Regex: '^<.*>'
+  - Regex: '^<c.*>'
     Priority: 2
-  - Regex: '.*'
+  - Regex: '^<.*>'
     Priority: 3
+  - Regex: '.*'
+    Priority: 4
 
 # ---- 指针和引用对齐方式 ----
-PointerAlignment: Left        # int* ptr 而不是 int *ptr
+PointerAlignment: Right           # Google: int *ptr;
 
 # ---- 命名空间 ----
-NamespaceIndentation: None
+NamespaceIndentation: Inner       # Google: 命名空间内容缩进
 
 # ---- 构造函数初始化列表 ----
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
 BreakConstructorInitializersBeforeComma: false
 
 # ---- 模板代码 ----
-SpacesInAngles: false         # template<...> 内部不加空格
-
-# ---- 其他 ----
-Cpp11BracedListStyle: true
+SpacesInAngles: false
 SpaceBeforeCpp11BracedList: false
+Cpp11BracedListStyle: true
+
+# ---- 其他对齐规则 ----
 AlignAfterOpenBracket: Align
 AlignOperands: true
+DerivePointerAlignment: false
+AllowAllParametersOfDeclarationOnNextLine: false

@@ -1,4 +1,7 @@
 *.vscode
 *.log
+/build*/
+/site/
 bazel-*
-*.lock
+# Bzlmod lockfile
+/MODULE.bazel.lock
