@@ -91,4 +91,12 @@ void SegmentTree::update(int diff, int l, int r) {
   update_range(1, 0, size - 1, diff, l, r);
 }
 
+std::vector<int> SegmentTree::toArray() {
+  std::vector<int> res(size);
+  for (int i = 0; i < size; ++i) {
+    res[i] = query(i, i);
+  }
+  return res;
+}
+
 } // namespace algorithem_v1
