@@ -6,4 +6,6 @@ cc_test(
         "@glog//:glog",
         "@googletest//:gtest_main",
     ],
+    # timeout="short",
+    size="small",
 )

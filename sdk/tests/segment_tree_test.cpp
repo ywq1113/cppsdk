@@ -1,5 +1,6 @@
 #include "algorithm_v1/segment_tree.h"
 
+#include <glog/logging.h>
 #include <gtest/gtest.h>
 
 using namespace algorithem_v1;
@@ -56,4 +57,16 @@ TEST(SegmentTreeBugTest, LazyPushDownWrongParam) {
     // 期望 19
     int result = seg.query(0, 3);
     EXPECT_EQ(result, 19) << "Lazy propagation parameter issue triggered!";
+}
+
+TEST(SegmentTreeBugTest, LazyPushDownTrigger) {
+    std::vector<int> data = {1, 1, 1, 1};
+    SegmentTree seg(data);
+
+    // 先对整个区间更新，触发lazy标记
+    seg.update(5, 0, 3);  // root lazy=5
+
+    // 再查询子区间，迫使push_down执行
+    int result = seg.query(1, 3);  
+    EXPECT_EQ(result, 18) << "Lazy propagation parameter issue triggered!";
 }

@@ -64,25 +64,25 @@ void SegmentTree::push_down(int node, int l, int r) {
 }
 
 void SegmentTree::update_range(
-    int node, int start, int end, int diff, int l, int r) {
+    int node, int l, int r, int diff, int ql, int qr) {
   // TODO: Think that why all nodes will not update when update_range
-  // recursively called 不相交，剪枝
-  if (r < start || l > end) {
+  // 当前节点与更新区间无交集，直接返回
+  if (qr < l || ql > r) {
     return;
   }
 
   // 一个区间内
-  if (start >= l && end <= r) {
-    tree[node] += (end - start + 1) * diff;
+  if (l >= ql && r <= qr) {
+    tree[node] += (r - l + 1) * diff;
     lazy[node] += diff;
     return;
   }
 
   // 两个区间，更新自己，向下传递标记
-  push_down(node, start, end);
-  auto mid = start + ((end - start) >> 1);
-  update_range(node * 2, start, mid, diff, l, r);
-  update_range(node * 2 + 1, mid + 1, end, diff, l, r);
+  push_down(node, l, r);
+  auto mid = l + ((r - l) >> 1);
+  update_range(node * 2, l, mid, diff, ql, qr);
+  update_range(node * 2 + 1, mid + 1, r, diff, ql, qr);
   // 回溯
   tree[node] = tree[node * 2] + tree[node * 2 + 1];
 }
