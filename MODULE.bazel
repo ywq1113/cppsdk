@@ -1,0 +1,48 @@
+module(
+    name = "my_sdk_repo",
+    version = "1.0",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "rules_pkg", version = "0.10.1")
+
+# ==============================
+# 配置开关
+# ==============================
+USE_GIT_DEPS = False
+
+# --- GFlags ---
+archive_override(
+    module_name = "com_github_gflags_gflags",
+    urls = ["https://github.com/gflags/gflags/archive/refs/tags/v2.2.2.tar.gz"],
+    strip_prefix = "gflags-2.2.2",
+) if not USE_GIT_DEPS else git_override(
+    module_name = "com_github_gflags_gflags",
+    remote = "https://github.com/gflags/gflags.git",
+    commit = "52e94563eba1968783864942fedf6e87e3c611f4",
+)
+bazel_dep(name = "com_github_gflags_gflags", version = "2.2.2")
+
+# --- Glog ---
+archive_override(
+    module_name = "com_github_google_glog",
+    urls = ["https://github.com/google/glog/archive/refs/tags/v0.6.0.tar.gz"],
+    strip_prefix = "glog-0.6.0",
+) if not USE_GIT_DEPS else git_override(
+    module_name = "com_github_google_glog",
+    remote = "https://github.com/google/glog.git",
+    commit = "53d58e4531c7c90f71ddab503d915e027432447a",
+)
+bazel_dep(name = "com_github_google_glog", version = "0.6.0")
+
+# --- GTest ---
+archive_override(
+    module_name = "com_google_googletest",
+    urls = ["https://github.com/google/googletest/archive/refs/tags/v1.15.2.zip"],
+    strip_prefix = "googletest-1.15.2",
+) if not USE_GIT_DEPS else git_override(
+    module_name = "com_google_googletest",
+    remote = "https://github.com/google/googletest.git",
+    commit = "a66e3b8f5d1ef1b84d12e4c3e4b7866db7f991dc",
+)
+bazel_dep(name = "com_google_googletest", version = "1.15.2")
