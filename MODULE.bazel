@@ -1,0 +1,10 @@
+module(
+    name = "my_sdk_repo",
+    version = "1.0",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "rules_pkg", version = "1.1.0")
+bazel_dep(name = "gflags", version = "2.2.2")
+bazel_dep(name = "glog", version = "0.7.1")
+bazel_dep(name = "googletest", version = "1.17.0")
