@@ -9,9 +9,7 @@ SegmentTree::SegmentTree(const std::vector<int> &data) {
   build(data, 1, 0, size - 1);
 }
 
-void SegmentTree::build(const std::vector<int> &data,
-                        int node,
-                        int start,
+void SegmentTree::build(const std::vector<int> &data, int node, int start,
                         int end) {
   if (start == end /*叶子节点*/) {
     tree[node] = data[start];
@@ -63,8 +61,8 @@ void SegmentTree::push_down(int node, int l, int r) {
   }
 }
 
-void SegmentTree::update_range(
-    int node, int l, int r, int diff, int ql, int qr) {
+void SegmentTree::update_range(int node, int l, int r, int diff, int ql,
+                               int qr) {
   // TODO: Think that why all nodes will not update when update_range
   // 当前节点与更新区间无交集，直接返回
   if (qr < l || ql > r) {

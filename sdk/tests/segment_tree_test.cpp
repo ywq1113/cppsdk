@@ -2,7 +2,6 @@
 
 #include <glog/logging.h>
 #include <gtest/gtest.h>
-
 #include <numeric>
 
 using namespace algorithem_v1;
@@ -58,12 +57,10 @@ TEST(SegmentTreeBugTest, LazyPushDownWrongParam) {
 
   // 期望 19
   int result = seg.query(0, 3);
-  EXPECT_EQ(result, 19)
-      << "Lazy propagation parameter issue triggered!";
+  EXPECT_EQ(result, 19) << "Lazy propagation parameter issue triggered!";
 
   auto updated = seg.toArray();
-  int real_ret =
-      std::accumulate(updated.begin(), updated.end(), 0);
+  int real_ret = std::accumulate(updated.begin(), updated.end(), 0);
   EXPECT_EQ(result, real_ret) << "ERROR: real_ret = " << real_ret;
 }
 
@@ -76,6 +73,5 @@ TEST(SegmentTreeBugTest, LazyPushDownTrigger) {
 
   // 再查询子区间，迫使push_down执行
   int result = seg.query(1, 3);
-  EXPECT_EQ(result, 18)
-      << "Lazy propagation parameter issue triggered!";
+  EXPECT_EQ(result, 18) << "Lazy propagation parameter issue triggered!";
 }
