@@ -4,7 +4,8 @@ namespace algorithem_v1 {
 
 SegmentTree::SegmentTree(const std::vector<int> &data) {
   size = data.size();
-  tree.assign(size * 4, 0);
+  tree_sum.assign(size * 4, 0);
+  tree_max.assign(size * 4, 0);
   lazy.assign(size * 4, 0);
   build(data, 1, 0, size - 1);
 }
@@ -12,13 +13,15 @@ SegmentTree::SegmentTree(const std::vector<int> &data) {
 void SegmentTree::build(const std::vector<int> &data, int node, int start,
                         int end) {
   if (start == end /*叶子节点*/) {
-    tree[node] = data[start];
+    tree_sum[node] = data[start];
+    tree_max[node] = data[start];
     return;
   }
   auto mid = start + ((end - start) >> 1);
   build(data, node * 2, start, mid);
   build(data, node * 2 + 1, mid + 1, end);
-  tree[node] = tree[node * 2] + tree[node * 2 + 1];
+  tree_max[node] = std::max(tree_max[node * 2], tree_max[node * 2 + 1]);
+  tree_sum[node] = tree_sum[node * 2] + tree_sum[node * 2 + 1];
 }
 
 int SegmentTree::query(int l, int r) {
@@ -36,7 +39,7 @@ int SegmentTree::query_range(int node, int l, int r, int ql, int qr) {
 
   // 区间内
   if (l >= ql && r <= qr) {
-    return tree[node];
+    return tree_sum[node];
   }
 
   // 区间合并
@@ -51,10 +54,10 @@ void SegmentTree::push_down(int node, int l, int r) {
     auto diff = lazy[node];
     auto mid = l + ((r - l) >> 1);
     // Update left
-    tree[2 * node] += diff * (mid - l + 1);
+    tree_sum[2 * node] += diff * (mid - l + 1);
     lazy[2 * node] += diff;
     // Update right
-    tree[2 * node + 1] += diff * (r - mid);
+    tree_sum[2 * node + 1] += diff * (r - mid);
     lazy[2 * node + 1] += diff;
     // Clear current node
     lazy[node] = 0;
@@ -71,7 +74,7 @@ void SegmentTree::update_range(int node, int l, int r, int diff, int ql,
 
   // 一个区间内
   if (l >= ql && r <= qr) {
-    tree[node] += (r - l + 1) * diff;
+    tree_sum[node] += (r - l + 1) * diff;
     lazy[node] += diff;
     return;
   }
@@ -82,10 +85,10 @@ void SegmentTree::update_range(int node, int l, int r, int diff, int ql,
   update_range(node * 2, l, mid, diff, ql, qr);
   update_range(node * 2 + 1, mid + 1, r, diff, ql, qr);
   // 回溯
-  tree[node] = tree[node * 2] + tree[node * 2 + 1];
+  tree_sum[node] = tree_sum[node * 2] + tree_sum[node * 2 + 1];
 }
 
-void SegmentTree::update(int diff, int l, int r) {
+void SegmentTree::update_range(int diff, int l, int r) {
   update_range(1, 0, size - 1, diff, l, r);
 }
 

@@ -7,9 +7,7 @@ cc_binary(
         "@google_benchmark//:benchmark",
     ],
     copts = [
-        "-O3",
-        "-march=native",
-        "-ftree-vectorize",
+        "-O1",
     ],
 )
 
@@ -24,9 +22,9 @@ cc_binary(
     copts = [
         "-O3",
         "-march=native",
-        "-ftree-vectorize",
-        "-ftree-vectorizer-verbose=2",
-        "-mavx2",
-        "-msse4.2",
+        "-Rpass=loop-vectorize",
+        "-Rpass=slp-vectorize",
+        "-Rpass-missed=loop-vectorize",
+        "-Rpass-analysis=loop-vectorize",
     ],
 )
