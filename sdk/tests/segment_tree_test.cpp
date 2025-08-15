@@ -19,7 +19,7 @@ TEST(SegmentTreeTest, SingleUpdate) {
   std::vector<int> data = {1, 2, 3, 4, 5};
   SegmentTree st(data);
 
-  st.update(2, 1, 3); // [1,3] 每个元素+2 => [1,4,5,6,5]
+  st.update_range(2, 1, 3); // [1,3] 每个元素+2 => [1,4,5,6,5]
   EXPECT_EQ(st.query(0, 4), 21);
   EXPECT_EQ(st.query(1, 3), 15);
 }
@@ -28,8 +28,8 @@ TEST(SegmentTreeTest, MultipleUpdates) {
   std::vector<int> data = {0, 0, 0, 0, 0};
   SegmentTree st(data);
 
-  st.update(1, 0, 2); // => [1,1,1,0,0]
-  st.update(3, 1, 4); // => [1,4,4,3,3]
+  st.update_range(1, 0, 2); // => [1,1,1,0,0]
+  st.update_range(3, 1, 4); // => [1,4,4,3,3]
   EXPECT_EQ(st.query(0, 4), 15);
   EXPECT_EQ(st.query(1, 2), 8);
   EXPECT_EQ(st.query(3, 4), 6);
@@ -41,7 +41,7 @@ TEST(SegmentTreeTest, EdgeCases) {
 
   EXPECT_EQ(st.query(0, 0), 5);
 
-  st.update(10, 0, 0);
+  st.update_range(10, 0, 0);
   EXPECT_EQ(st.query(0, 0), 15);
 
   // 测试超出范围的查询
@@ -53,7 +53,7 @@ TEST(SegmentTreeBugTest, LazyPushDownWrongParam) {
   SegmentTree seg(data);
 
   // 区间[1,3]每个元素+5
-  seg.update(5, 1, 3);
+  seg.update_range(5, 1, 3);
 
   // 期望 19
   int result = seg.query(0, 3);
@@ -69,7 +69,7 @@ TEST(SegmentTreeBugTest, LazyPushDownTrigger) {
   SegmentTree seg(data);
 
   // 先对整个区间更新，触发lazy标记
-  seg.update(5, 0, 3); // root lazy=5
+  seg.update_range(5, 0, 3); // root lazy=5
 
   // 再查询子区间，迫使push_down执行
   int result = seg.query(1, 3);

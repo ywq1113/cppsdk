@@ -1,5 +1,35 @@
 # cppsdk
 
+## Bootstrap
+
+```
+sudo bash ./bootstrap.sh
+```
+
+## Developer
+
+### Vscode
+
+**settings.json**
+
+```
+{
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/compile_commands.json"
+}
+```
+**compile_commands.json**
+
+```
+bazel run @wolfd_bazel_compile_commands//:generate_compile_commands
+
+```
+
+### Format
+
+```
+find . \( -name "*.h" -o -name "*.cpp" \) -print0 | xargs -0 clang-format -i
+```
+
 ## Build
 
 **How to Compiler this project.**

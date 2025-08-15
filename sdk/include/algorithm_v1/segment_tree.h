@@ -6,7 +6,8 @@ namespace algorithem_v1 {
 
 class SegmentTree {
  private:
-  std::vector<int64_t> tree;
+  std::vector<int64_t> tree_sum;
+  std::vector<int64_t> tree_max;
   std::vector<int64_t> lazy;
   int64_t size;
 
@@ -15,7 +16,7 @@ class SegmentTree {
 
   int query(int l, int r);
 
-  void update(int diff, int l, int r);
+  void update_range(int diff, int l, int r);
 
   /*
    * For debug
