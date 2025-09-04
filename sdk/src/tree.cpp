@@ -1,5 +1,7 @@
 #include "algorithm_v1/tree.h"
 
+#include <stack>
+
 std::vector<int> Tree::postOrderTraversal() {
   if (root == nullptr) {
     return {};

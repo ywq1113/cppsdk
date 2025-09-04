@@ -1,4 +1,3 @@
-#include <stack>
 #include <vector>
 
 class TreeNode {
