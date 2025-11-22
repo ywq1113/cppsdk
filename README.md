@@ -45,10 +45,10 @@ bazel build //sdk/...
 **How to run unit tests by target.**
 
 ```bash
-bazel test //sdk/tests:segment_tree_test
+bazel test //sdk/container/tests:segment_tree_test
 
 # If need more info
-# bazel test --test_verbose_timeout_warnings --test_output=all //sdk/tests/...
+# bazel test --test_verbose_timeout_warnings --test_output=all //sdk/container/tests/...
 ```
 
 **How to run all unit tests.**

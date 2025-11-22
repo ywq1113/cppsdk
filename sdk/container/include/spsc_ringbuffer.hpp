@@ -1,6 +1,17 @@
+/*
+  Copyright 2025 The cppsdk Authors. All rights reserved.
+  Use of this source code is governed by a BSD-style license that can be
+  found in the LICENSE file.
+  Author: wizyang
+  Date: 2024/06/20
+  Description: A thread-safe single-producer single-consumer ring buffer.
+  
+  @file sdk/container/spsc_ringbuffer.hpp
+*/
+
 #pragma once
 
-#include "base/macros.h"
+#include "macro/macros.h"
 
 #include <cstddef>
 
@@ -10,7 +21,8 @@
 #include <type_traits>
 #include <utility>
 
-namespace container_v1 {
+namespace sdk {
+namespace container {
 
 // Thread-safe SPSC ring buffer (single-producer single-consumer)
 // Notes: Do not supports placement new for data_ now
@@ -129,4 +141,5 @@ class SPSCRingbuffer {
   alignas(64) std::atomic<size_t> tail_;
 };
 
-} // namespace container_v1
+} // namespace container
+} // namespace sdk

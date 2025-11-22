@@ -1,4 +1,4 @@
-#include "container_v1/spsc_ringbuffer.h"
+#include "container/spsc_ringbuffer.hpp"
 
 #include <algorithm>
 #include <benchmark/benchmark.h>
@@ -6,7 +6,7 @@
 #include <random>
 #include <vector>
 
-using container_v1::SPSCRingbuffer;
+using sdk::container::SPSCRingbuffer;
 
 struct alignas(64) Msg64 {
   uint64_t t{0};
@@ -90,7 +90,6 @@ static void BM_SPSC_Throughput(benchmark::State &st) {
 
   std::thread prod([&] {
     pin_to_cpu_optional(2);
-    Msg64 m{};
     for (auto _ : st) {
       // 注意：GB 会在每次迭代自动计时，我们在一次迭代内尽量多做工作
       const auto t_end =

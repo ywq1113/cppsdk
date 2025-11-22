@@ -1,4 +1,4 @@
-#include "algorithm_v1/segment_tree.h"
+#include "container/segment_tree.h"
 
 #include <algorithm>
 #include <benchmark/benchmark.h>
@@ -10,6 +10,8 @@ static const int N = 100000;
 static const int Q = 10000;
 static std::vector<int> arr;
 static std::vector<std::pair<int, int>> queries;
+
+using sdk::container::SegmentTree;
 
 static void PrepareData() {
   std::mt19937 rng(std::random_device{}());
@@ -40,7 +42,7 @@ BENCHMARK(BM_Accumulate);
 
 // Benchmark 2: Segment Tree
 static void BM_SegmentTree(benchmark::State &state) {
-  algorithem_v1::SegmentTree st(arr);
+  SegmentTree st(arr);
   for (auto _ : state) {
     long long sum = 0;
     for (auto [l, r] : queries) {

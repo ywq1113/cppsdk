@@ -7,22 +7,22 @@ BasedOnStyle: Google
 Language: Cpp
 Standard: c++20
 
-# ---- 缩进与空格 ----
+# ---- Indentation & Spaces ----
 IndentWidth: 2
 TabWidth: 4
 UseTab: Never
 ContinuationIndentWidth: 4
-IndentCaseLabels: false            # Google: case 与 switch 对齐
+IndentCaseLabels: false            # Google: case aligned with switch
 
-# ---- 换行规则 ----
-ColumnLimit: 80                   # Google 推荐 80
+# ---- Line Breaking Rules ----
+ColumnLimit: 80                   # Google recommends 80
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
-BinPackArguments: true            # Google：参数尽可能放一行
+BinPackArguments: true            # Google: pack arguments into one line when possible
 BinPackParameters: true
 
-# ---- 括号规则 ----
+# ---- Brace Rules ----
 BreakBeforeBraces: Attach
 BraceWrapping:
   AfterFunction: false
@@ -30,15 +30,15 @@ BraceWrapping:
   AfterControlStatement: false
   BeforeElse: false
 
-# ---- 注释 ----
+# ---- Comment Rules ----
 ReflowComments: true
 SpacesBeforeTrailingComments: 1
 
-# ---- 空行规则 ----
+# ---- Space Rules ----
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
 
-# ---- include 规则 ----
+# ---- Include Rules ----
 SortIncludes: true
 IncludeBlocks: Regroup
 IncludeCategories:
@@ -51,22 +51,22 @@ IncludeCategories:
   - Regex: '.*'
     Priority: 4
 
-# ---- 指针和引用对齐方式 ----
+# ---- Pointer Rules ----
 PointerAlignment: Right           # Google: int *ptr;
 
-# ---- 命名空间 ----
-NamespaceIndentation: Inner       # Google: 命名空间内容缩进
+# ---- Namespace Rules ----
+NamespaceIndentation: None
 
-# ---- 构造函数初始化列表 ----
+# ---- Constructor Rules ----
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 BreakConstructorInitializersBeforeComma: false
 
-# ---- 模板代码 ----
+# ---- Template Rules ----
 SpacesInAngles: false
 SpaceBeforeCpp11BracedList: false
 Cpp11BracedListStyle: true
 
-# ---- 其他对齐规则 ----
+# ---- Other Rules ----
 AlignAfterOpenBracket: Align
 AlignOperands: true
 DerivePointerAlignment: false

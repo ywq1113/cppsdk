@@ -1,10 +1,21 @@
-#include "algorithm_v1/segment_tree.h"
+/*
+  Copyright 2025 The cppsdk Authors. All rights reserved.
+  Use of this source code is governed by a BSD-style license that can be
+  found in the LICENSE file.
+  Author: wizyang
+  Date: 2025/11/23
+  Description: A segment tree test cases.
+
+  @file container/tests/segment_tree_test.cpp
+*/
+
+#include "container/segment_tree.h"
 
 #include <glog/logging.h>
 #include <gtest/gtest.h>
 #include <numeric>
 
-using namespace algorithem_v1;
+using sdk::container::SegmentTree;
 
 TEST(SegmentTreeTest, BasicQuery) {
   std::vector<int> data = {1, 2, 3, 4, 5};

@@ -1,6 +1,7 @@
-#include "algorithm_v1/segment_tree.h"
+#include "container/segment_tree.h"
 
-namespace algorithem_v1 {
+namespace sdk {
+namespace container {
 
 SegmentTree::SegmentTree(const std::vector<int> &data) {
   size = data.size();
@@ -100,4 +101,5 @@ std::vector<int> SegmentTree::toArray() {
   return res;
 }
 
-} // namespace algorithem_v1
+} // namespace container
+} // namespace sdk

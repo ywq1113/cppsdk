@@ -1,4 +1,15 @@
-#include "container_v1/spsc_ringbuffer.h"
+/*
+  Copyright 2025 The cppsdk Authors. All rights reserved.
+  Use of this source code is governed by a BSD-style license that can be
+  found in the LICENSE file.
+  Author: wizyang
+  Date: 2025/11/23
+  Description: A ringbuffer test cases.
+
+  @file container/tests/ringbuffer_test.cpp
+*/
+
+#include "container/spsc_ringbuffer.hpp"
 
 #include <chrono>
 
@@ -9,7 +20,7 @@
 #include <type_traits>
 #include <vector>
 
-using container_v1::SPSCRingbuffer;
+using sdk::container::SPSCRingbuffer;
 
 struct MoveOnly {
   DISALLOW_COPY(MoveOnly);
