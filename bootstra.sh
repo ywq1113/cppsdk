@@ -32,3 +32,6 @@ else
     echo "Not support arch: $arch"
     exit 1
 fi
+
+sudo apt-get install clangd-18
+sudo ln -s /usr/bin/clangd-18 /usr/bin/clangd

@@ -15,9 +15,7 @@
 
 #include <atomic>
 #include <gtest/gtest.h>
-#include <optional>
 #include <thread>
-#include <type_traits>
 #include <vector>
 
 using sdk::container::SPSCRingbuffer;

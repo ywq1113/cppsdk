@@ -19,9 +19,13 @@ sudo bash ./bootstrap.sh
 ```
 **compile_commands.json**
 
-```
+```bash
 bazel run @wolfd_bazel_compile_commands//:generate_compile_commands
+```
+or
 
+```bash
+bazel run compile_commands
 ```
 
 ### Format
