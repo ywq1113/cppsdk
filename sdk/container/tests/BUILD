@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 
 cc_test(
     name = "segment_tree_test",
-    srcs = ["segment_tree_test.cpp"],
+    srcs = ["segment_tree_test.cc"],
     deps = [
         "//sdk/container",
         "@glog",
@@ -14,7 +14,7 @@ cc_test(
 
 cc_test(
     name = "ringbuffer_test",
-    srcs = ["ringbuffer_test.cpp"],
+    srcs = ["ringbuffer_test.cc"],
     deps = [
         "//sdk/container",
         "@glog",

@@ -5,12 +5,8 @@ package(default_visibility = ["//visibility:public"])
 cc_library(
     name = "container",
     srcs = [
-        "src/segment_tree.cpp",
+        "src/segment_tree.cc",
     ],
-    # hdrs = [
-    #     "container/include/segment_tree.h",
-    #     "container/include/spsc_ringbuffer.hpp",
-    # ],
     hdrs = glob(["include/**/*.h", "include/**/*.hpp"]),
     include_prefix = "container",
     strip_include_prefix = "include",

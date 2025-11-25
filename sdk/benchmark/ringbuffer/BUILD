@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 
 cc_binary(
     name = "spsc_ringbuffer_benchmark",
-    srcs = ["spsc_ringbuffer_benchmark.cpp"],
+    srcs = ["spsc_ringbuffer_benchmark.cc"],
     copts = [
         "-O2",
     ],

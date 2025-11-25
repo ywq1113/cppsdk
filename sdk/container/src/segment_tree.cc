@@ -1,14 +1,12 @@
-/*
-  Copyright 2025 The cppsdk Authors. All rights reserved.
-  Use of this source code is governed by a BSD-style license that can be
-  found in the LICENSE file.
-  Author: wizyang
-  Date: 2025/11/23
-  Description: A segment tree implementation for range queries and updates.
+// Copyright 2025 The cppsdk Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
-  @file sdk/container/segment_tree.cpp
-*/
-
+/**
+ * @file segment_tree.cc
+ * @brief A segment tree implementation for range queries and updates.
+ * @author wizyang
+ */
 
 #include "container/segment_tree.h"
 

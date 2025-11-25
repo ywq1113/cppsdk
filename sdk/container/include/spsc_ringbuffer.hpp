@@ -1,13 +1,12 @@
-/*
-  Copyright 2025 The cppsdk Authors. All rights reserved.
-  Use of this source code is governed by a BSD-style license that can be
-  found in the LICENSE file.
-  Author: wizyang
-  Date: 2024/06/20
-  Description: A thread-safe single-producer single-consumer ring buffer.
-  
-  @file sdk/container/spsc_ringbuffer.hpp
-*/
+// Copyright 2025 The cppsdk Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+/**
+ * @file spsc_ringbuffer.hpp
+ * @brief A thread-safe single-producer single-consumer ring buffer.
+ * @author wizyang
+ */
 
 #pragma once
 
@@ -16,7 +15,6 @@
 #include <cstddef>
 
 #include <atomic>
-#include <new>
 #include <thread>
 #include <type_traits>
 #include <utility>

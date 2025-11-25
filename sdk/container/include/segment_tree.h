@@ -1,13 +1,12 @@
-/*
-  Copyright 2025 The cppsdk Authors. All rights reserved.
-  Use of this source code is governed by a BSD-style license that can be
-  found in the LICENSE file.
-  Author: wizyang
-  Date: 2025/11/23
-  Description: A segment tree implementation for range queries and updates.
+// Copyright 2025 The cppsdk Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
-  @file sdk/container/segment_tree.h
-*/
+/**
+ * @file segment_tree.h
+ * @brief A segment tree implementation for range queries and updates.
+ * @author wizyang
+ */
 
 #pragma once
 
@@ -18,55 +17,55 @@
 namespace sdk {
 namespace container {
 
-  class SegmentTree {
-   private:
-    std::vector<int64_t> tree_sum;
-    std::vector<int64_t> tree_max;
-    std::vector<int64_t> lazy;
-    int64_t size;
+class SegmentTree {
+ private:
+  std::vector<int64_t> tree_sum;
+  std::vector<int64_t> tree_max;
+  std::vector<int64_t> lazy;
+  int64_t size;
 
-   public:
-    SegmentTree(const std::vector<int> &data);
+ public:
+  SegmentTree(const std::vector<int> &data);
 
-    int query(int l, int r);
+  int query(int l, int r);
 
-    void update_range(int diff, int l, int r);
+  void update_range(int diff, int l, int r);
 
-    /*
-     * For debug
-     */
-    std::vector<int> toArray();
+  /*
+   * For debug
+   */
+  std::vector<int> toArray();
 
-   private:
-    /*
-     * @brief Build segment tree recursively
-     * @param const std::vector<int> &data
-     * @param int node
-     * @param int start, end
-     */
-    void build(const std::vector<int> &data, int node, int start, int end);
+ private:
+  /*
+   * @brief Build segment tree recursively
+   * @param const std::vector<int> &data
+   * @param int node
+   * @param int start, end
+   */
+  void build(const std::vector<int> &data, int node, int start, int end);
 
-    /*
-     * @brief Get sum of [l, r]
-     * @param int node, node is index of tree
-     * @param int start, end
-     * @param int l, r
-     * @return int
-     */
-    int query_range(int node, int l, int r, int ql, int qr);
+  /*
+   * @brief Get sum of [l, r]
+   * @param int node, node is index of tree
+   * @param int start, end
+   * @param int l, r
+   * @return int
+   */
+  int query_range(int node, int l, int r, int ql, int qr);
 
-    /*
-     * @brief Update diff of [l, r]
-     * @param int node, node is index of tree
-     * @param int start, end, current node range
-     * @param int diff
-     * @param int l, r
-     * @return void
-     */
-    void update_range(int node, int l, int r, int diff, int ql, int qr);
+  /*
+   * @brief Update diff of [l, r]
+   * @param int node, node is index of tree
+   * @param int start, end, current node range
+   * @param int diff
+   * @param int l, r
+   * @return void
+   */
+  void update_range(int node, int l, int r, int diff, int ql, int qr);
 
-    void push_down(int node, int l, int r);
-  };
+  void push_down(int node, int l, int r);
+};
 
 } // namespace container
 } // namespace sdk

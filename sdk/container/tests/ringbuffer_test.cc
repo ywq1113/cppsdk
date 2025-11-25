@@ -1,13 +1,12 @@
-/*
-  Copyright 2025 The cppsdk Authors. All rights reserved.
-  Use of this source code is governed by a BSD-style license that can be
-  found in the LICENSE file.
-  Author: wizyang
-  Date: 2025/11/23
-  Description: A ringbuffer test cases.
+// Copyright 2025 The cppsdk Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
-  @file container/tests/ringbuffer_test.cpp
-*/
+/**
+ * @file ringbuffer_test.cc
+ * @brief A test suite for the SPSC ring buffer.
+ * @author wizyang
+ */
 
 #include "container/spsc_ringbuffer.hpp"
 

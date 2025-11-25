@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 
 cc_binary(
     name = "segment_tree_benchmark_no_simd",
-    srcs = ["segment_tree_benchmark.cpp"],
+    srcs = ["segment_tree_benchmark.cc"],
     copts = [
         "-O1",
     ],
@@ -17,7 +17,7 @@ cc_binary(
 
 cc_binary(
     name = "segment_tree_benchmark_simd",
-    srcs = ["segment_tree_benchmark.cpp"],
+    srcs = ["segment_tree_benchmark.cc"],
     copts = [
         "-O3",
         "-march=native",
