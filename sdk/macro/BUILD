@@ -8,4 +8,5 @@ cc_library(
     include_prefix = "macro",
     strip_include_prefix = "include",
     alwayslink = True,
+    visibility = ["//sdk:__subpackages__"],
 )

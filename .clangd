@@ -1,0 +1,32 @@
+If:
+  PathMatch: .*\.h
+CompileFlags:
+  Add: [-x, c++-header]
+
+If:
+  PathMatch: .*/(external|bazel-out)/.*
+Diagnostics:
+  Suppress: ["*"]
+  UnusedIncludes: None
+
+Diagnostics:
+  ClangTidy:
+    Add: 
+      - bugprone-*
+      - performance-*
+      - modernise-use-nullptr
+      - modernise-use-override
+      - modernise-use-trailing-return-type
+    Remove:
+
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+
+Hover:
+  ShowAKA: Yes
+InlayHints:
+  Designators: Yes
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
