@@ -6,8 +6,9 @@ cc_library(
     name = "sdk",
     visibility = ["//visibility:public"],
     deps = [
-        "//sdk/container:container",
-        "//sdk/macro:macro",
-        "//sdk/network:network",
+        "//sdk/container",
+        "//sdk/macro",
+        "//sdk/network",
+        "//sdk/time",
     ],
 )
