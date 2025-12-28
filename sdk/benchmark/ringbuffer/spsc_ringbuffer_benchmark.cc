@@ -50,12 +50,13 @@ struct BoostQ {
   Q q_;
 };
 
-// 绑定 CPU（可按需关闭）
-static void pin_to_cpu_optional(int /*cpu*/) {
+// 绑定 CPU
+static void pin_to_cpu_optional(int cpu) {
 #ifdef __linux__
-  // 如果你想严格绑核，改成指定 cpu
-  // cpu_set_t set; CPU_ZERO(&set); CPU_SET(cpu, &set);
-  // pthread_setaffinity_np(pthread_self(), sizeof(set), &set);
+  cpu_set_t set;
+  CPU_ZERO(&set);
+  CPU_SET(cpu, &set);
+  pthread_setaffinity_np(pthread_self(), sizeof(set), &set);
 #endif
 }
 
@@ -70,7 +71,6 @@ static void BM_SPSC_Throughput(benchmark::State &st) {
   std::atomic<bool> stop{false};
   std::atomic<uint64_t> pushed{0}, popped{0}, drops{0};
 
-  // 延迟直方图（对数桶），可选
   const int B = 64;
   std::vector<std::atomic<uint64_t>> hist(B);
   for (auto &h : hist) h.store(0, std::memory_order_relaxed);
@@ -89,7 +89,6 @@ static void BM_SPSC_Throughput(benchmark::State &st) {
   std::thread prod([&] {
     pin_to_cpu_optional(2);
     for (auto _ : st) {
-      // 注意：GB 会在每次迭代自动计时，我们在一次迭代内尽量多做工作
       const auto t_end =
           std::chrono::steady_clock::now() + std::chrono::milliseconds(100);
       while (std::chrono::steady_clock::now() < t_end &&
@@ -134,7 +133,6 @@ static void BM_SPSC_Throughput(benchmark::State &st) {
   prod.join();
   cons.join();
 
-  // 统计（GB 会按迭代时间自动折算 rate）
   const double ops = static_cast<double>(popped.load());
   st.counters["ops/s"] = benchmark::Counter(ops, benchmark::Counter::kIsRate);
 
@@ -142,7 +140,6 @@ static void BM_SPSC_Throughput(benchmark::State &st) {
   const double attempts_d = static_cast<double>(pushed.load() + drops.load());
   st.counters["drop_rate"] = attempts_d > 0 ? drops_d / attempts_d : 0.0;
 
-  // 简易延迟分位（可选）
   if (with_ts) {
     uint64_t total = 0;
     for (auto &h : hist) total += h.load();
